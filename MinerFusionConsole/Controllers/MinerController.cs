@@ -21,7 +21,7 @@ namespace MinerFusionConsole.Controllers
 
         private readonly INetworkService _networkSvc;
 
-        private const int UpdateInterval = 10;
+        private const int UpdateInterval = 5;
 
         public MinerController(Tuple<string, IImmutableList<MinersConfigModel>> data)
         {
@@ -29,8 +29,8 @@ namespace MinerFusionConsole.Controllers
             // _minerSvc = new List<IMinerService>();
             //_minerSvc = CreateDummyMiners();
             _consoleView = new ConsoleView();
-            // _networkSvc = new NetworkService();
-            _networkSvc = new DummyNetworkService(); // for debugging purposes
+            _networkSvc = new NetworkService();
+            //_networkSvc = new DummyNetworkService(); // for debugging purposes
 
             _networkSvc.Setup();
         }
@@ -53,6 +53,7 @@ namespace MinerFusionConsole.Controllers
                 }
 
                 tasksToRun.Clear();
+
                 Thread.Sleep(TimeSpan.FromSeconds(UpdateInterval));
             }
         }

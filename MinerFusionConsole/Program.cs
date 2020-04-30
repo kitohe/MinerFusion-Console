@@ -8,9 +8,7 @@ namespace MinerFusionConsole
         static async Task Main(string[] args)
         {
             var fileCtrl = new FileController();
-            var minerCtrl = new MinerController();
-
-            minerCtrl.CreateTasks(await fileCtrl.Setup());
+            var minerCtrl = new MinerController(await fileCtrl.Setup());
 
             await minerCtrl.Work();
         }
