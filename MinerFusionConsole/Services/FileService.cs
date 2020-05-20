@@ -22,6 +22,7 @@ namespace MinerFusionConsole.Services
             {
                 Console.WriteLine("No valid miners to load were found. Please add at least one mining rig to `miners.json` file and restart the client.");
                 File.Create(ConfigFilename);
+                Console.ReadLine();
                 Environment.Exit(-1);
             }
 
@@ -38,6 +39,7 @@ namespace MinerFusionConsole.Services
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Could not process miners config file: {e.Message}");
+                Console.ReadLine();
                 Environment.Exit(-1);
             }
 
@@ -45,6 +47,7 @@ namespace MinerFusionConsole.Services
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Miners file is empty or contains invalid entries. For instructions visit https://github.com/kitohe/MinerFusion-Console");
+                Console.ReadLine();
                 Environment.Exit(-1);
             }
 
@@ -69,6 +72,7 @@ namespace MinerFusionConsole.Services
             {
                 Console.WriteLine("Could not locate file with access key. New file was created, please provide your access key, save and restart client.");
                 File.Create(AccessKeyFileName);
+                Console.ReadLine();
                 Environment.Exit(-1);
             }
 
