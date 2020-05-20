@@ -36,13 +36,15 @@ namespace MinerFusionConsole.Services
             }
             catch (JsonSerializationException e)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Could not process miners config file: {e.Message}");
                 Environment.Exit(-1);
             }
 
-            if (miners.Count == 0)
+            if (miners == null || miners.Count == 0)
             {
-                Console.WriteLine("Miners file is empty or contains invalid entries.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Miners file is empty or contains invalid entries. For instructions visit https://github.com/kitohe/MinerFusion-Console");
                 Environment.Exit(-1);
             }
 

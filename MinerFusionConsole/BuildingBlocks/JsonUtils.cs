@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace MinerFusionConsole.BuildingBlocks
 {
-    public class JsonUtils
+    public static class JsonUtils
     {
         public static object ExtractJsonObject(string mixedString)
         {

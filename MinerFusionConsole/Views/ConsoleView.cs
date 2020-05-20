@@ -11,7 +11,7 @@ namespace MinerFusionConsole.Views
             Console.WriteLine("MinerFusion Client v1");
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Last updated {DateTime.Now}");
+            Console.WriteLine($"Last updated {DateTime.Now}\n");
 
             Console.ResetColor();
         }

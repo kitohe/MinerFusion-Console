@@ -76,8 +76,6 @@ namespace MinerFusionConsole.Services.MinerServices
 
             string returnData = Encoding.UTF8.GetString(bytes);
 
-            // TODO - NullReferenceException
-            // When: Adding phoenix miner while claymore is alrady established
             return JsonConvert.DeserializeObject<PhoenixTemplate>(returnData).result.ToImmutableList();
         }
 
@@ -125,20 +123,20 @@ namespace MinerFusionConsole.Services.MinerServices
         {
             _model.MinerAlive = false;
             _model.MinerVersion = "";
+            _model.MineServer = "";
             _model.UpTime = 0;
             _model.TotalHashRate = 0;
             _model.AcceptedShares = 0;
             _model.RejectedShares = 0;
-            _model.PerGpuHashRate = new List<double>();
-            _model.PerGpuShares = new List<int>();
-            _model.PerGpuHashRate = new List<double>();
-            _model.PerGpuTemperatures = new List<int>();
-            _model.PerGpuFanSpeed = new List<int>();
             _model.RigWattage = 0;
             _model.MinMineServerResponseTime = 0;
             _model.MaxMineServerResponseTime = 0;
             _model.AverageMineServerResponseTime = 0;
-            _model.MineServer = "";
+            _model.PerGpuHashRate.Clear();
+            _model.PerGpuShares.Clear();
+            _model.PerGpuHashRate.Clear();
+            _model.PerGpuTemperatures.Clear();
+            _model.PerGpuFanSpeed.Clear();
         }
 
         private async Task TryConnect(string minerIpAddress, int minerPort)

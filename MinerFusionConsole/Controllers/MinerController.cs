@@ -25,12 +25,9 @@ namespace MinerFusionConsole.Controllers
 
         public MinerController(Tuple<string, IImmutableList<MinersConfigModel>> data)
         {
-            _minerSvc = CreateTasks(data) ?? throw new ArgumentNullException(nameof(data));
-            // _minerSvc = new List<IMinerService>();
-            //_minerSvc = CreateDummyMiners();
+            _minerSvc = CreateTasks(data);
             _consoleView = new ConsoleView();
             _networkSvc = new NetworkService();
-            //_networkSvc = new DummyNetworkService(); // for debugging purposes
 
             _networkSvc.Setup();
         }
@@ -60,7 +57,7 @@ namespace MinerFusionConsole.Controllers
 
         private IEnumerable<IMinerService> CreateTasks(Tuple<string, IImmutableList<MinersConfigModel>> data)
         {
-            if (data == null) return null;
+            if (data == null) return new List<IMinerService>();
 
             var activeMiners = new List<IMinerService>();
 

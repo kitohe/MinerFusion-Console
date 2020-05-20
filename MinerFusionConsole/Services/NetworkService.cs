@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +20,13 @@ namespace MinerFusionConsole.Services
 
         private readonly string _remoteServiceBaseUrl;
 
+        private static DateTime _tokenExpTime;
+
         public NetworkService()
         {
             _httpClient ??= new HttpClient();
 
-            _remoteServiceBaseUrl = "http://localhost:5100/api/v1/Monitoring";
+            _remoteServiceBaseUrl = "https://miner.api.minerfusion.com/api/v1/Monitoring";
         }
 
         public async Task SendMinerData(BaseMinerModel data)
@@ -33,6 +36,9 @@ namespace MinerFusionConsole.Services
                 Debug.WriteLine("Trying to start networking service...");
                 await Setup();
             }
+
+            if (_tokenExpTime < DateTime.UtcNow)
+                await Setup();
 
             var uri = API.Miner.AddMinerData(_remoteServiceBaseUrl);
 
@@ -51,11 +57,11 @@ namespace MinerFusionConsole.Services
         {
             _discoveryDocument = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
-                Address = "http://localhost:5000",
+                Address = "https://accounts.minerfusion.com",
                 Policy =
                 {
-                    ValidateIssuerName = false,
-                    RequireHttps = false
+                    ValidateIssuerName = true,
+                    RequireHttps = true
                 }
             });
 
@@ -69,9 +75,9 @@ namespace MinerFusionConsole.Services
             var tokenResponse = await _httpClient.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
                 Address = _discoveryDocument.TokenEndpoint,
-
+                
                 ClientId = "client",
-                ClientSecret = "secret",
+                ClientSecret = "we_minin",
                 Scope = "miner.api"
             });
 
@@ -82,6 +88,7 @@ namespace MinerFusionConsole.Services
                 return;
             }
 
+            _tokenExpTime = DateTime.UtcNow + TimeSpan.FromSeconds(tokenResponse.ExpiresIn);
             _httpClient.SetBearerToken(tokenResponse.AccessToken);
             _serviceIsUp = true;
         }

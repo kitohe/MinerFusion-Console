@@ -15,7 +15,6 @@ namespace MinerFusionConsole.Services
         public async Task SendMinerData(BaseMinerModel data)
         {
             await Task.Yield();
-            // Console.WriteLine("Simulating sending miner data. (Napping 10ms)");
             Thread.Sleep(10);
         }
 
