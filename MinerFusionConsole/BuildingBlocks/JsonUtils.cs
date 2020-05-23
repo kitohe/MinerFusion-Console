@@ -17,9 +17,9 @@ namespace MinerFusionConsole.BuildingBlocks
                     {
                         return JsonConvert.DeserializeObject(jsonProbe);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
-                        Debug.WriteLine($"Exception occured while extracting JSON object with message: {e.Message}");
+                        // ignore
                     }
                 }
             }

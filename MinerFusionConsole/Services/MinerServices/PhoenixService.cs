@@ -110,7 +110,6 @@ namespace MinerFusionConsole.Services.MinerServices
                     _model.PerGpuFanSpeed.Add(int.Parse(gpuTempsAndFans[i]));
             }
 
-            Debug.WriteLine($"{start.ElapsedMilliseconds}ms");
             start.Stop();
         }
 
