@@ -87,18 +87,5 @@ namespace MinerFusionConsole.Controllers
                     throw new ArgumentOutOfRangeException(nameof(minerType), minerType, null);
             }
         }
-
-        private IEnumerable<IMinerService> CreateDummyMiners()
-        {
-            List<IMinerService> dummyMiners = new List<IMinerService>();
-
-            for (int i = 0; i < 10; i++)
-            {
-                //dummyMiners.Add(new ClaymoreService(i.ToString(), Guid.NewGuid().ToString(), "miner: " + i, "192.168.1.44"));
-                dummyMiners.Add(new PhoenixService(i.ToString(), Guid.NewGuid().ToString(), "miner: " + i, "192.168.1.44"));
-            }
-
-            return dummyMiners;
-        }
     }
 }
