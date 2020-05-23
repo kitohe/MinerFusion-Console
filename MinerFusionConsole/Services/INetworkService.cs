@@ -6,7 +6,7 @@ namespace MinerFusionConsole.Services
 {
     public interface INetworkService : IDisposable
     {
-        Task SendMinerData(BaseMinerModel data);
+        Task<bool> SendMinerData(BaseMinerModel data);
         Task Setup();
     }
 }

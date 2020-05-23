@@ -46,7 +46,8 @@ namespace MinerFusionConsole.Controllers
                 foreach (var item in results)
                 {
                     _consoleView.PrintMinerInfo(item.MinerName, item.MinerAlive, item.TotalHashRate.ToString(CultureInfo.InvariantCulture));
-                    await _networkSvc.SendMinerData(item);
+                    if (!await _networkSvc.SendMinerData(item))
+                        _consoleView.ServerCommunicationError();
                 }
 
                 tasksToRun.Clear();

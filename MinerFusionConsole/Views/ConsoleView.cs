@@ -31,5 +31,12 @@ namespace MinerFusionConsole.Views
 
             Console.ResetColor();
         }
+
+        public void ServerCommunicationError()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("There was an error while trying to communicate with MinerFusion server.\nPlease check you miners.json file and/or validity of you access key.");
+            Console.ResetColor();
+        }
     }
 }

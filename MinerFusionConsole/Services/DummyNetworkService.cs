@@ -12,10 +12,11 @@ namespace MinerFusionConsole.Services
             Console.WriteLine("Simulating dispose...");
         }
 
-        public async Task SendMinerData(BaseMinerModel data)
+        public async Task<bool> SendMinerData(BaseMinerModel data)
         {
             await Task.Yield();
             Thread.Sleep(10);
+            return true;
         }
 
         public async Task Setup()

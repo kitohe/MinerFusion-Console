@@ -29,7 +29,7 @@ namespace MinerFusionConsole.Services
             _remoteServiceBaseUrl = "https://miner.api.minerfusion.com/api/v1/Monitoring";
         }
 
-        public async Task SendMinerData(BaseMinerModel data)
+        public async Task<bool> SendMinerData(BaseMinerModel data)
         {
             if (!_serviceIsUp)
             {
@@ -48,9 +48,7 @@ namespace MinerFusionConsole.Services
 
             var response = await _httpClient.PostAsync(uri, json);
 
-            response.EnsureSuccessStatusCode();
-
-            Debug.WriteLine("Data sent successfully");
+            return response.IsSuccessStatusCode;
         }
 
         public async Task Setup()
