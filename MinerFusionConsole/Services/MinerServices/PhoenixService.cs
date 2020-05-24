@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
@@ -7,19 +6,13 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using MinerFusionConsole.Models.Miners;
+using MinerFusionConsole.Models.Miners.PhoenixMiner;
 using Newtonsoft.Json;
 
 namespace MinerFusionConsole.Services.MinerServices
 {
     public class PhoenixService : IMinerService
     {
-        private class PhoenixTemplate
-        {
-            public int id { get; set; }
-            public string error { get; set; }
-            public IEnumerable<string> result { get; set; }
-        }
-
         private TcpClient _tcpClient;
 
         private readonly BaseMinerModel _model;
@@ -76,7 +69,7 @@ namespace MinerFusionConsole.Services.MinerServices
 
             string returnData = Encoding.UTF8.GetString(bytes);
 
-            return JsonConvert.DeserializeObject<PhoenixTemplate>(returnData).result.ToImmutableList();
+            return JsonConvert.DeserializeObject<PhoenixMinerModel>(returnData).Result.ToImmutableList();
         }
 
         private void UnpackMinerStatus(IImmutableList<string> minerData)

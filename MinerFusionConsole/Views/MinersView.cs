@@ -2,7 +2,7 @@
 
 namespace MinerFusionConsole.Views
 {
-    public class ConsoleView
+    public class MinersView
     {
         public void DisplayInfo()
         {
