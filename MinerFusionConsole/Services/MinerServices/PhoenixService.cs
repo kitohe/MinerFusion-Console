@@ -81,7 +81,7 @@ namespace MinerFusionConsole.Services.MinerServices
                 return;
             }
 
-            FlushModelFields();
+            _model.FlushModelFields();
 
             var minerStats = minerData.ElementAt(2).Split(';');
             var gpuTempsAndFans = minerData.ElementAt(6).Split(';');
@@ -110,26 +110,6 @@ namespace MinerFusionConsole.Services.MinerServices
         public void Dispose()
         {
             _tcpClient?.Dispose();
-        }
-
-        private void FlushModelFields()
-        {
-            _model.MinerAlive = false;
-            _model.MinerVersion = "";
-            _model.MineServer = "";
-            _model.UpTime = 0;
-            _model.TotalHashRate = 0;
-            _model.AcceptedShares = 0;
-            _model.RejectedShares = 0;
-            _model.RigWattage = 0;
-            _model.MinMineServerResponseTime = 0;
-            _model.MaxMineServerResponseTime = 0;
-            _model.AverageMineServerResponseTime = 0;
-            _model.PerGpuHashRate.Clear();
-            _model.PerGpuShares.Clear();
-            _model.PerGpuHashRate.Clear();
-            _model.PerGpuTemperatures.Clear();
-            _model.PerGpuFanSpeed.Clear();
         }
 
         private async Task TryConnect(string minerIpAddress, int minerPort)

@@ -34,5 +34,25 @@ namespace MinerFusionConsole.Models.Miners
             PerGpuFanSpeed = new List<int>();
             PerGpuShares = new List<int>();
         }
+
+        public void FlushModelFields()
+        {
+            MinerAlive = false;
+            MinerVersion = "";
+            UpTime = 0;
+            TotalHashRate = 0d;
+            AcceptedShares = 0;
+            RejectedShares = 0;
+            RigWattage = 0;
+            MinMineServerResponseTime = 0;
+            MaxMineServerResponseTime = 0;
+            AverageMineServerResponseTime = 0;
+            MineServer = "";
+            PerGpuHashRate.Clear();
+            PerGpuShares.Clear();
+            PerGpuHashRate.Clear();
+            PerGpuTemperatures.Clear();
+            PerGpuFanSpeed.Clear();
+        }
     }
 }
