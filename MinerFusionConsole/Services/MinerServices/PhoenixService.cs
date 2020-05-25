@@ -34,7 +34,7 @@ namespace MinerFusionConsole.Services.MinerServices
 
         public async Task<BaseMinerModel> GetMinerStatus()
         {
-            FlushModelFields();
+            _model.FlushModelFields();
 
             try
             {

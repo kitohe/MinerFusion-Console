@@ -4,7 +4,8 @@
     {
         Claymore,
         Phoenix,
-        NBMiner
+        NBMiner,
+        LolMiner
     }
 
     public class MinersConfigModel

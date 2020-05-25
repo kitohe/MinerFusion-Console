@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace MinerFusionConsole.Services.MinerServices
 {
-    public class BMiner : IMinerService
+    public class BMinerService : IMinerService
     {
         private readonly HttpClient _httpClient;
 
@@ -16,12 +16,12 @@ namespace MinerFusionConsole.Services.MinerServices
 
         private readonly BaseMinerModel _model;
 
-        public BMiner(string minerId, string userId, string minerName, string minerIpAddress,
+        public BMinerService(string minerId, string userId, string minerName, string minerIpAddress,
             int minerPort = 1880)
         {
             _httpClient = new HttpClient();
 
-            _uri = new UriBuilder("http", minerIpAddress, minerPort).Uri.ToString();
+            _uri = new UriBuilder("http", minerIpAddress, minerPort, "api/status").Uri.ToString();
             _model = new BaseMinerModel(minerId, userId, minerName);
         }
 

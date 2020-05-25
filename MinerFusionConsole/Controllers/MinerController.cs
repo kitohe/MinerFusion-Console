@@ -83,6 +83,7 @@ namespace MinerFusionConsole.Controllers
                 MinerTypes.Phoenix => new PhoenixService(minerId, userId, minerName, minerIpAddress, minerPort,
                     minerPassword),
                 MinerTypes.NBMiner => new NbMinerService(minerId, userId, minerName, minerIpAddress, minerPort),
+                MinerTypes.LolMiner => new LolMinerService(minerId, userId, minerName, minerIpAddress, minerPort),
                 _ => throw new ArgumentOutOfRangeException(nameof(minerType), minerType, null)
             };
         }
