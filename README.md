@@ -12,6 +12,7 @@ Support for more miners is coming shortly.
 - Claymore
 - Phoenix
 - NBMiner
+- LolMiner
 
 ### How to use
 
@@ -26,13 +27,13 @@ To create new miner entry in `miners.json` file create new JSON object inside JS
 
 Here are key-value pairs that you should use to correcly add new miner entry:
 
-| Key           | Value                                       | Optional          |
-| ------------- |:-------------------------------------------:|:-----------------:|
-| MinerType     | <p>Claymore</p><p>Phoenix</p><p>NBMiner</p> | no                |
-| MinerName     | *string*                                    | no                |
-| MinerIpAddress| *string*                                    | no                |
-| MinerPassword | *string*                                    | yes               |
-| MinerPort     | *int*                                       | yes               |
+| Key           | Value                                                      | Optional          |
+| ------------- |:----------------------------------------------------------:|:-----------------:|
+| MinerType     | <p>Claymore</p><p>Phoenix</p><p>NBMiner</p><p>LolMiner</p> | no                |
+| MinerName     | *string*                                                   | no                |
+| MinerIpAddress| *string*                                                   | no                |
+| MinerPassword | *string*                                                   | yes               |
+| MinerPort     | *int*                                                      | yes               |
 
 
 Example of `miners.json` file with two different miners:
@@ -54,3 +55,7 @@ Example of `miners.json` file with two different miners:
   }
 ]
 ```
+
+*Notes:*
+
+- LolMiner does not support monitoring GPUs temperatures and fan speeds
