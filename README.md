@@ -30,7 +30,7 @@ Here are key-value pairs that you should use to correcly add new miner entry:
 
 | Key           | Value                                                      | Optional          |
 | ------------- |:----------------------------------------------------------:|:-----------------:|
-| MinerType     | <p>Claymore</p><p>Phoenix</p><p>NBMiner</p><p>LolMiner</p><p>T-Rex</p> | no                |
+| MinerType     | <p>Claymore</p><p>Phoenix</p><p>NBMiner</p><p>LolMiner</p><p>TRex</p> | no                |
 | MinerName     | *string*                                                   | no                |
 | MinerIpAddress| *string*                                                   | no                |
 | MinerPassword | *string*                                                   | yes               |
