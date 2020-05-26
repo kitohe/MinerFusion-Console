@@ -5,7 +5,8 @@
         Claymore,
         Phoenix,
         NBMiner,
-        LolMiner
+        LolMiner,
+        TRex,
     }
 
     public class MinersConfigModel

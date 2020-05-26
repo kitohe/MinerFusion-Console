@@ -81,6 +81,7 @@ namespace MinerFusionConsole.Services.MinerServices
                 _model.PerGpuFanSpeed.Add(gpu.Fan);
                 _model.PerGpuShares.Add(gpu.AcceptedShares);
                 _model.PerGpuTemperatures.Add(gpu.Temperature);
+                _model.AcceptedShares += gpu.AcceptedShares;
             }
         }
     }
