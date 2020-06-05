@@ -68,17 +68,11 @@ namespace MinerFusionConsole.Services
                 return;
             }
 
-            if (miners.Any(miner => miner.MinerPort < 1 || miner.MinerPort > 65535))
-            {
-                FixMinerPorts(miners);
-                await SaveMiners(miners.ToImmutableList());
-            }
-                
-            if (miners.Any(miner => miner.MinerId == null || !Guid.TryParse(miner.MinerId, out _)))
-            {
-                GenerateValidGuids(miners);
-                await SaveMiners(miners.ToImmutableList());
-            }
+            FixMinerPorts(miners);
+            GenerateValidGuids(miners);
+            CheckIfValidIp(miners);
+
+            await SaveMiners(miners.ToImmutableList());
 
             _fileResponse.SetMinersConfig(miners.ToImmutableList());
         }
@@ -116,6 +110,7 @@ namespace MinerFusionConsole.Services
         {
             foreach (var miner in miners)
             {
+                if (miner.MinerIpAddress == "localhost") continue;
                 if(!IPAddress.TryParse(miner.MinerIpAddress, out _))
                     _fileResponse.AddError($"Invalid IP address detected for miner: {miner.MinerName}");
             }
