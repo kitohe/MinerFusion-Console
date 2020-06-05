@@ -15,7 +15,7 @@ namespace MinerFusionConsole.Controllers
 {
     public class MinerController
     {
-        private IEnumerable<IMinerService> _minerSvc;
+        private readonly IEnumerable<IMinerService> _minerSvc;
 
         private readonly MinersView _consoleView;
 
