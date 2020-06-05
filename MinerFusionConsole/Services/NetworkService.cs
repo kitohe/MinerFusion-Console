@@ -32,17 +32,12 @@ namespace MinerFusionConsole.Services
         public async Task<bool> SendMinerData(BaseMinerModel data)
         {
             if (!_serviceIsUp)
-            {
-                Debug.WriteLine("Trying to start networking service...");
                 await Setup();
-            }
-
+            
             if (_tokenExpTime < DateTime.UtcNow)
                 await Setup();
 
             var uri = API.Miner.AddMinerData(_remoteServiceBaseUrl);
-
-            var jsonString = JsonConvert.SerializeObject(data, Formatting.None);
 
             var json = new StringContent(JsonConvert.SerializeObject(data).ToLower(), Encoding.UTF8, "application/json");
 

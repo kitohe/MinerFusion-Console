@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using MinerFusionConsole.BuildingBlocks;
@@ -48,9 +47,8 @@ namespace MinerFusionConsole.Services.MinerServices
                 var message = await _httpClient.GetStringAsync(_uri);
                 return JsonUtils.ExtractJsonObject(message);
             }
-            catch (HttpRequestException e)
+            catch (HttpRequestException)
             {
-                Debug.WriteLine($"Exception: {e.Message}");
                 return null;
             }
         }

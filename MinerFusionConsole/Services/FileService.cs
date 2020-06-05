@@ -18,7 +18,7 @@ namespace MinerFusionConsole.Services
 
         private const string AccessKeyFileName = "access_key.txt";
 
-        private FileResponse _fileResponse;
+        private readonly FileResponse _fileResponse;
 
         public FileService()
         {
@@ -93,7 +93,9 @@ namespace MinerFusionConsole.Services
 
             using var file = new StreamReader(AccessKeyFileName, Encoding.UTF8);
 
-            _fileResponse.SetAccessKey(await file.ReadToEndAsync());
+            var key = await file.ReadLineAsync();
+            
+            _fileResponse.SetAccessKey(key);
         }
 
         private void GenerateValidGuids(IEnumerable<MinersConfigModel> miners)

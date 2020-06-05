@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Immutable;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -74,7 +73,6 @@ namespace MinerFusionConsole.Services.MinerServices
 
         private void UnpackMinerStatus(IImmutableList<string> minerData)
         {
-            var start = Stopwatch.StartNew();
             if (minerData == null)
             {
                 _model.MinerAlive = false;
@@ -102,9 +100,6 @@ namespace MinerFusionConsole.Services.MinerServices
                 else
                     _model.PerGpuFanSpeed.Add(int.Parse(gpuTempsAndFans[i]));
             }
-
-            Debug.WriteLine($"{start.ElapsedMilliseconds}ms");
-            start.Stop();
         }
 
         public void Dispose()
