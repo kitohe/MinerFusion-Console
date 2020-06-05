@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,15 +11,15 @@ namespace MinerFusionConsole.Services
 {
     public class NetworkService : INetworkService
     {
-        private static HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
 
-        private static DiscoveryDocumentResponse _discoveryDocument;
+        private DiscoveryDocumentResponse _discoveryDocument;
 
-        private static bool _serviceIsUp;
+        private bool _serviceIsUp;
 
         private readonly string _remoteServiceBaseUrl;
 
-        private static DateTime _tokenExpTime;
+        private DateTime _tokenExpTime;
 
         public NetworkService()
         {
