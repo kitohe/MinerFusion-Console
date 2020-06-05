@@ -83,6 +83,7 @@ namespace MinerFusionConsole.Services
             {
                 _fileResponse.AddError("Could not locate file with access key. New file was created, please provide your access key, save and restart client.");
                 File.Create(AccessKeyFileName);
+                return;
             }
 
             using var file = new StreamReader(AccessKeyFileName, Encoding.UTF8);
