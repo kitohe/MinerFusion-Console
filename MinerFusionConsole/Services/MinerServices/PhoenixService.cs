@@ -1,25 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using MinerFusionConsole.Models.Miners;
+using MinerFusionConsole.Models.Miners.PhoenixMiner;
 using Newtonsoft.Json;
 
 namespace MinerFusionConsole.Services.MinerServices
 {
     public class PhoenixService : IMinerService
     {
-        private class PhoenixTemplate
-        {
-            public int id { get; set; }
-            public string error { get; set; }
-            public IEnumerable<string> result { get; set; }
-        }
-
         private TcpClient _tcpClient;
 
         private readonly BaseMinerModel _model;
@@ -41,7 +33,7 @@ namespace MinerFusionConsole.Services.MinerServices
 
         public async Task<BaseMinerModel> GetMinerStatus()
         {
-            FlushModelFields();
+            _model.FlushModelFields();
 
             try
             {
@@ -76,19 +68,18 @@ namespace MinerFusionConsole.Services.MinerServices
 
             string returnData = Encoding.UTF8.GetString(bytes);
 
-            return JsonConvert.DeserializeObject<PhoenixTemplate>(returnData).result.ToImmutableList();
+            return JsonConvert.DeserializeObject<PhoenixMinerModel>(returnData).Result.ToImmutableList();
         }
 
         private void UnpackMinerStatus(IImmutableList<string> minerData)
         {
-            var start = Stopwatch.StartNew();
             if (minerData == null)
             {
                 _model.MinerAlive = false;
                 return;
             }
 
-            FlushModelFields();
+            _model.FlushModelFields();
 
             var minerStats = minerData.ElementAt(2).Split(';');
             var gpuTempsAndFans = minerData.ElementAt(6).Split(';');
@@ -109,33 +100,11 @@ namespace MinerFusionConsole.Services.MinerServices
                 else
                     _model.PerGpuFanSpeed.Add(int.Parse(gpuTempsAndFans[i]));
             }
-
-            start.Stop();
         }
 
         public void Dispose()
         {
             _tcpClient?.Dispose();
-        }
-
-        private void FlushModelFields()
-        {
-            _model.MinerAlive = false;
-            _model.MinerVersion = "";
-            _model.MineServer = "";
-            _model.UpTime = 0;
-            _model.TotalHashRate = 0;
-            _model.AcceptedShares = 0;
-            _model.RejectedShares = 0;
-            _model.RigWattage = 0;
-            _model.MinMineServerResponseTime = 0;
-            _model.MaxMineServerResponseTime = 0;
-            _model.AverageMineServerResponseTime = 0;
-            _model.PerGpuHashRate.Clear();
-            _model.PerGpuShares.Clear();
-            _model.PerGpuHashRate.Clear();
-            _model.PerGpuTemperatures.Clear();
-            _model.PerGpuFanSpeed.Clear();
         }
 
         private async Task TryConnect(string minerIpAddress, int minerPort)

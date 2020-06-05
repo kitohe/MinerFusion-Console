@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -28,7 +27,7 @@ namespace MinerFusionConsole.Services.MinerServices
 
         public async Task<BaseMinerModel> GetMinerStatus()
         {
-            FlushModelFields();
+            _model.FlushModelFields();
 
             UnpackMinerStatus(await DownloadMinerStatus());
 
@@ -96,26 +95,6 @@ namespace MinerFusionConsole.Services.MinerServices
                 else
                     _model.PerGpuFanSpeed.Add(int.Parse(gpuTempsAndFans[i]));
             }
-        }
-
-        public void FlushModelFields()
-        {
-            _model.MinerAlive = false;
-            _model.MinerVersion = "";
-            _model.UpTime = 0;
-            _model.TotalHashRate = 0d;
-            _model.AcceptedShares = 0;
-            _model.RejectedShares = 0;
-            _model.RigWattage = 0;
-            _model.MinMineServerResponseTime = 0;
-            _model.MaxMineServerResponseTime = 0;
-            _model.AverageMineServerResponseTime = 0;
-            _model.MineServer = "";
-            _model.PerGpuHashRate.Clear();
-            _model.PerGpuShares.Clear();
-            _model.PerGpuHashRate.Clear();
-            _model.PerGpuTemperatures.Clear();
-            _model.PerGpuFanSpeed.Clear();
         }
     }
 }

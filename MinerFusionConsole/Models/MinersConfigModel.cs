@@ -3,7 +3,10 @@
     public enum MinerTypes
     {
         Claymore,
-        Phoenix
+        Phoenix,
+        NBMiner,
+        LolMiner,
+        TRex,
     }
 
     public class MinersConfigModel

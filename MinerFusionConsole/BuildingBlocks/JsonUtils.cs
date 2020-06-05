@@ -19,7 +19,7 @@ namespace MinerFusionConsole.BuildingBlocks
                     }
                     catch (Exception)
                     {
-                        // ignore
+                        // ignored
                     }
                 }
             }

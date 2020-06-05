@@ -17,7 +17,7 @@ namespace MinerFusionConsole.Controllers
     {
         private IEnumerable<IMinerService> _minerSvc;
 
-        private readonly ConsoleView _consoleView;
+        private readonly MinersView _consoleView;
 
         private readonly INetworkService _networkSvc;
 
@@ -26,7 +26,7 @@ namespace MinerFusionConsole.Controllers
         public MinerController(Tuple<string, IImmutableList<MinersConfigModel>> data)
         {
             _minerSvc = CreateTasks(data);
-            _consoleView = new ConsoleView();
+            _consoleView = new MinersView();
             _networkSvc = new NetworkService();
 
             _networkSvc.Setup();
@@ -77,15 +77,16 @@ namespace MinerFusionConsole.Controllers
         private IMinerService GetService(MinerTypes minerType, string minerId, string userId, string minerName,
             string minerIpAddress, string minerPassword, int minerPort=3333)
         {
-            switch (minerType)
+            return minerType switch
             {
-                case MinerTypes.Claymore:
-                    return new ClaymoreService(minerId, userId, minerName, minerIpAddress, minerPort);
-                case MinerTypes.Phoenix:
-                    return new PhoenixService(minerId, userId, minerName, minerIpAddress, minerPort, minerPassword);
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(minerType), minerType, null);
-            }
+                MinerTypes.Claymore => new ClaymoreService(minerId, userId, minerName, minerIpAddress, minerPort),
+                MinerTypes.Phoenix => new PhoenixService(minerId, userId, minerName, minerIpAddress, minerPort,
+                    minerPassword),
+                MinerTypes.NBMiner => new NbMinerService(minerId, userId, minerName, minerIpAddress, minerPort),
+                MinerTypes.LolMiner => new LolMinerService(minerId, userId, minerName, minerIpAddress, minerPort),
+                MinerTypes.TRex => new TRexMinerService(minerId, userId, minerName, minerIpAddress, minerPort),
+                _ => throw new ArgumentOutOfRangeException(nameof(minerType), minerType, null)
+            };
         }
     }
 }

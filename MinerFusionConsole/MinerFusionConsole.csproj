@@ -17,12 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="IdentityModel" Version="4.2.0" />
+    <PackageReference Include="IdentityModel" Version="4.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Miners\" />
   </ItemGroup>
 
 </Project>
