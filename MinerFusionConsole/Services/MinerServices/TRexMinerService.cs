@@ -83,11 +83,5 @@ namespace MinerFusionConsole.Services.MinerServices
                 _model.PerGpuShares.Add(0); // per gpu shares are not supported in TRex
             }
         }
-
-        private string DummyMinerResponse()
-        {
-            return
-                "{\"accepted_count\":6,\"active_pool\":{\"difficulty\":5,\"ping\":97,\"retries\":0,\"url\":\"stratum+tcp://...\",\"user\":\"...\"},\"algorithm\":\"x16r\",\"api\":\"1.2\",\"cuda\":\"9.10\",\"description\":\"T-Rex NVIDIA GPU miner\",\"difficulty\":31968.245093004043,\"gpu_total\":1,\"gpus\":[{\"device_id\":0,\"fan_speed\":66,\"gpu_id\":0,\"hashrate\":4529054,\"hashrate_day\":5023728,\"hashrate_hour\":0,\"hashrate_minute\":4671930,\"intensity\":21.5,\"name\":\"GeForce GTX 1050\",\"temperature\":80,\"vendor\":\"Gigabyte\",\"disabled\":true,\"disabled_at_temperature\":77}],\"hashrate\":4529054,\"hashrate_day\":5023728,\"hashrate_hour\":0,\"hashrate_minute\":4671930,\"name\":\"t-rex\",\"os\":\"linux\",\"rejected_count\":0,\"solved_count\":0,\"ts\":1537095257,\"uptime\":108,\"version\":\"0.6.5\",\"updates\":{\"url\":\"https://fileurl\",\"md5sum\":\"md5...\",\"version\":\"0.8.0\",\"notes\":\"short update info\",\"notes_full\":\"full update info\",\"download_status\":{\"downloaded_bytes\":1775165,\"total_bytes\":5245345,\"last_error\":\"\",\"time_elapsed_sec\":2.887111,\"update_in_progress\":true,\"update_state\":\"downloading\",\"url\":\"https://fileurl\"}}}";
-        }
     }
 }
