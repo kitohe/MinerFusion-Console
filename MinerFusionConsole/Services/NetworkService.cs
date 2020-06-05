@@ -60,7 +60,6 @@ namespace MinerFusionConsole.Services
 
             if (_discoveryDocument.IsError)
             {
-                Debug.WriteLine(_discoveryDocument.Error);
                 _serviceIsUp = false;
                 return;
             }
@@ -76,7 +75,6 @@ namespace MinerFusionConsole.Services
 
             if (tokenResponse.IsError)
             {
-                Debug.WriteLine(tokenResponse.Error);
                 _serviceIsUp = false;
                 return;
             }
