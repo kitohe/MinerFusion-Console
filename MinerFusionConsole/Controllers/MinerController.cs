@@ -85,6 +85,7 @@ namespace MinerFusionConsole.Controllers
                 MinerTypes.NBMiner => new NbMinerService(minerId, userId, minerName, minerIpAddress, minerPort),
                 MinerTypes.LolMiner => new LolMinerService(minerId, userId, minerName, minerIpAddress, minerPort),
                 MinerTypes.TRex => new TRexMinerService(minerId, userId, minerName, minerIpAddress, minerPort),
+                MinerTypes.XMRig => new XMRigMinerService(minerId, userId, minerName, minerIpAddress, minerPort),
                 _ => throw new ArgumentOutOfRangeException(nameof(minerType), minerType, null)
             };
         }

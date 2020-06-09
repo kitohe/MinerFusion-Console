@@ -7,6 +7,7 @@
         NBMiner,
         LolMiner,
         TRex,
+        XMRig
     }
 
     public class MinersConfigModel
