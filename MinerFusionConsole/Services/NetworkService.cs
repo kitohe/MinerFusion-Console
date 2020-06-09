@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,29 +11,26 @@ namespace MinerFusionConsole.Services
 {
     public class NetworkService : INetworkService
     {
-        private static HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
 
-        private static DiscoveryDocumentResponse _discoveryDocument;
+        private DiscoveryDocumentResponse _discoveryDocument;
 
-        private static bool _serviceIsUp;
+        private bool _serviceIsUp;
 
         private readonly string _remoteServiceBaseUrl;
 
-        private static DateTime _tokenExpTime;
+        private DateTime _tokenExpTime;
 
         public NetworkService()
         {
-            _httpClient ??= new HttpClient();
+            _httpClient = new HttpClient();
 
             _remoteServiceBaseUrl = "https://miner.api.minerfusion.com/api/v1/Monitoring";
         }
 
         public async Task<bool> SendMinerData(BaseMinerModel data)
         {
-            if (!_serviceIsUp)
-                await Setup();
-            
-            if (_tokenExpTime < DateTime.UtcNow)
+            if (!_serviceIsUp || _tokenExpTime < DateTime.UtcNow)
                 await Setup();
 
             var uri = API.Miner.AddMinerData(_remoteServiceBaseUrl);
