@@ -37,9 +37,15 @@ namespace MinerFusionConsole.Services
 
             var json = new StringContent(JsonConvert.SerializeObject(data).ToLower(), Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync(uri, json);
-
-            return response.IsSuccessStatusCode;
+            try
+            {
+                var response = await _httpClient.PostAsync(uri, json);
+                return response.IsSuccessStatusCode;
+            }
+            catch (HttpRequestException)
+            {
+                return false;
+            }
         }
 
         public async Task Setup()
