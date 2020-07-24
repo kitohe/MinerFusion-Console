@@ -8,7 +8,7 @@ namespace MinerFusionConsole.Views
         {
             Console.Clear();
 
-            Console.WriteLine("MinerFusion Client v0.1.1");
+            Console.WriteLine("MinerFusion Client v0.1.2");
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Last updated {DateTime.Now}\n");
