@@ -359,5 +359,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-# Raider dir
+# Rider dir
 .idea/
