@@ -15,6 +15,7 @@ Support for more miners is coming shortly.
 - NBMiner
 - LolMiner
 - T-Rex
+- XMRig
 
 ### How to use
 
