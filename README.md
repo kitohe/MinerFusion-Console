@@ -4,7 +4,7 @@ This is miner monitoring console desktop client. Use it to monitor your crypto m
 
 ## Requirements
 
-- [.NET Core 3.1 Runtime](https://dotnet.microsoft.com/download)
+- [.NET 5.0 Runtime](https://dotnet.microsoft.com/download)
 
 ### Supported miners
 
