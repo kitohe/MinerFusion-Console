@@ -4,7 +4,7 @@ This is miner monitoring console desktop client. Use it to monitor your crypto m
 
 ## Requirements
 
-- [.NET Core 3.1 Runtime](https://dotnet.microsoft.com/download)
+- [.NET 5 Runtime](https://dotnet.microsoft.com/download)
 
 ### Supported miners
 
@@ -21,7 +21,7 @@ Support for more miners is coming shortly.
 
 #### Windows
 
-- Download and install .NET Core 3.1 Runtime
+- Download and install .NET 5 Runtime
 - Download MinerFusion - Console client
 - Run program for it to create `miners.json` and `access_key.txt` files or create them yourself in main program directory.
 - Paste your unique access key to `access_key.txt` file and save it.
@@ -29,7 +29,7 @@ Support for more miners is coming shortly.
 
 #### Linux / MacOS
 
-- Follow these [instructions](https://docs.microsoft.com/en-us/dotnet/core/install/linux-package-manager-ubuntu-2004) for Linux and these [instructions](https://dotnet.microsoft.com/download/dotnet-core/thank-you/sdk-3.1.300-macos-x64-installer) for MacOS to download and install .NET Core 3.1 Runtime for your OS
+- Follow these [instructions](https://docs.microsoft.com/en-us/dotnet/core/install/linux-package-manager-ubuntu-2004) for Linux and these [instructions](https://dotnet.microsoft.com/download/dotnet/thank-you/runtime-aspnetcore-5.0.9-macos-x64-binaries) for MacOS to download and install .NET 5 Runtime for your OS
 - Download MinerFusion - Console client, unzip and copy to target destination
 - Being in console clinet folder execute: `chmod +x MinerFusionConsole`
 - Run `./MinerFusionConsole` and it will create `miners.json` and `access_key.txt`
